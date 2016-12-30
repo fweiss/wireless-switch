@@ -7,6 +7,8 @@
         <style>
             body {
                 font-family: sans-serif;
+                text-align: center;
+                padding-top: 20%;
             }
             .switch {
                 position: relative;
@@ -41,35 +43,36 @@
             input:focus + .slider {
                 box-shadow: 0 0 1px #2196F3;
             }
-           .slider.round:before {
-                border-radius: 50%;
-            }
            /* TEXT */
             .slider:before {
-                content: "OFF"
+                content: "OFF";
+                font-size: 200%;
             }
             input:checked + .slider:before {
                 content: "ON"
             }
             /* GEOMETRY */
             .switch {
-                width: 70px;
-                height: 34px;
+                width: 350px;
+                height: 100px;
+                border: 1px solid black;
             }
             .slider:before {
-                left: 4px;
-                bottom: 4px;
-                width: 36px;
-                height: 26px;
-                bottom: 4px;
+                left: 10%;
+                width: 30%;
+                height: 80%;
+                bottom: 10%;
             }
             input:checked + .slider:before {
-                -webkit-transform: translateX(26px);
-                -ms-transform: translateX(26px);
-                transform: translateX(26px);
+                -webkit-transform: translateX(140%);
+                -ms-transform: translateX(140%);
+                transform: translateX(140%);
             }
             .slider.round {
                 border-radius: 34px;
+            }
+            .slider.round:before {
+                border-radius: 50%;
             }
         </style>
     </head>
