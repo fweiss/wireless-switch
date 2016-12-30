@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Arduino\arduino.exe" --upload wireless-switch.ino
