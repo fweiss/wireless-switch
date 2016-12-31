@@ -6,6 +6,9 @@
 #endif
 
 #include <ESP8266WiFi.h>
+#include "web-template.h"
+
+WebTemplate webTemplate;
 
 const char WiFiAPPSK[] = "sparkfun";
 
@@ -39,6 +42,11 @@ void loop()
   // Match the request
   int val = -1; // We'll use 'val' to keep track of both the
                 // request type (read/set) and value if set.
+
+    if (req.indexOf("/main.css") != -1) {
+        client.print(webTemplate.getCss());
+        return;
+    }
   if (req.indexOf("/led/0") != -1)
     val = 0; // Will write LED low
   else if (req.indexOf("/led/1") != -1)
@@ -65,7 +73,8 @@ void loop()
   s += "<!DOCTYPE HTML>\r\n<html>\r\n";
   s += "<head>";
   s += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
-  s += "<style>" + style + "</style>";
+//  s += "<style>" + style + "</style>";
+    s += "<link rel=\"stylesheet\" href=\"/main.css\"/>";
   s += "</head>";
   s += "<body>";
   // If we're setting the LED, print out a message saying we did
@@ -86,11 +95,16 @@ void loop()
   {
     s += "Invalid Request.<br> Try /led/1, /led/0, or /read.";
   }
-  s += "<div>";
-  s += "<a href=\"/led/1\"><button>Off</button></a>";
-  s += "<a href=\"/led/0\"><button>On</button></a>";
-  s += "</body></html>\n";
-  s += "</div>";
+  s +=       " <label class=\"switch\">";
+  s +=                "<input type=\"checkbox\"/>";
+  s +=                 "<div class=\"slider\"></div>";
+  s +=             "</label>";
+
+ // s += "<div>";
+ // s += "<a href=\"/led/1\"><button>Off</button></a>";
+ // s += "<a href=\"/led/0\"><button>On</button></a>";
+ // s += "</body></html>\n";
+ // s += "</div>";
 
   // Send the response to the client
   client.print(s);
