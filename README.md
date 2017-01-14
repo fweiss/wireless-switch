@@ -20,8 +20,37 @@ TODO
 
 ## Deployment
 
+Generic ESP8266 board
+
+Follow steps to deploy to Olimex ESP8266-dev. In Ardnuio IDE:
+
+- tools sketch esp8266 sketch data upload
+- sketch upload
+
+Remember that the FTDI supplies barely enough current
+
+## Testing
+
+There are no unit tests, although it would be nice to do some simple ones for an arduino project.
+There's also some Javascript logic that could be unit tested.
+
+To aid in integration testing, there's a node server which simulates the ESP Web Server. It serves static
+file directly from the data folder and provides a fake API. This is handy for testing and debugging the front end
+code.
+
+## Development
+
 Use the Arduino IDE
 
 Recommend using IDE: Prefernces > use External Editor
 
-Gener]ic ESP8266 board
+## Arduino IDE
+
+Library Manager
+
+Add ArduinoJson
+
+## Links and references
+
+https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WebServer/examples/FSBrowser/FSBrowser.ino
+

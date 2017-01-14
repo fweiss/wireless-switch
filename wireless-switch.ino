@@ -6,6 +6,12 @@
 #endif
 
 #include <ESP8266WiFi.h>
+#include <WiFiClient.h>
+#include <ESP8266WebServer.h>
+#include <ArduinoJson.h>
+#include <ESP8266mDNS.h>
+#include <FS.h>
+
 #include "web-template.h"
 
 WebTemplate webTemplate;
@@ -16,17 +22,98 @@ const int LED_PIN = 4; // Thing's onboard, green LED
 const int ANALOG_PIN = A0; // The only analog pin on the Thing
 const int DIGITAL_PIN = 12; // Digital pin to be read
 
-WiFiServer server(80);
+boolean state = false;
 
-void setup()
-{
-  initHardware();
-//  setupWifiAccessPoint();
-  setupWifiStation();
-  server.begin();
+ESP8266WebServer server(80);
+
+String getContentType(String filename) {
+    if(filename.endsWith(".htm")) return "text/html";
+    else if(filename.endsWith(".html")) return "text/html";
+    else if(filename.endsWith(".css")) return "text/css";
+    else if(filename.endsWith(".js")) return "application/javascript";
+    else if(filename.endsWith(".png")) return "image/png";
+    else if(filename.endsWith(".gif")) return "image/gif";
+    else if(filename.endsWith(".jpg")) return "image/jpeg";
+    else if(filename.endsWith(".ico")) return "image/x-icon";
+    else if(filename.endsWith(".xml")) return "text/xml";
+    else if(filename.endsWith(".pdf")) return "application/x-pdf";
+    else if(filename.endsWith(".zip")) return "application/x-zip";
+    else if(filename.endsWith(".gz")) return "application/x-gzip";
+    return "text/plain";
 }
 
-void loop()
+bool handleFileRead(String path){
+    if(path.endsWith("/")) path += "index.htm";
+    String contentType = getContentType(path);
+    String pathWithGz = path + ".gz";
+    if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){
+        if(SPIFFS.exists(pathWithGz))
+            path += ".gz";
+        File file = SPIFFS.open(path, "r");
+        size_t sent = server.streamFile(file, contentType);
+        file.close();
+        return true;
+    }
+    return false;
+}
+
+// open drain, LOW is on
+void switchOn(boolean on) {
+    digitalWrite(LED_PIN, on ? LOW : HIGH);
+}
+
+void setup() {
+    initHardware();
+    switchOn(state);
+    SPIFFS.begin();
+
+    //  setupWifiAccessPoint();
+    setupWifiStation();
+
+    server.on("/", HTTP_GET, []() {
+      if (!handleFileRead("/index.html")) {
+        server.send(404, "text/plain", "FileNotFound");
+      }
+    });
+    server.on("/main.css", HTTP_GET, []() {
+      if (!handleFileRead("/main.css")) {
+       server.send(404, "text/plain", "FileNotFound");
+      }
+    });
+    server.on("/main.js", HTTP_GET, []() {
+      if (!handleFileRead("/main.js")) {
+       server.send(404, "text/plain", "FileNotFound");
+      }
+    });
+    server.on("/api/switch", HTTP_GET, []() {
+        String value = state ? "on" : "off";
+        String body = "{\"state\":\"" + value + "\"}";
+        server.send(200, "application/json", body);
+    });
+    server.on("/api/switch", HTTP_POST, []() {
+        StaticJsonBuffer<200> newBuffer;
+        JsonObject& root = newBuffer.parseObject(server.arg("plain"));
+        if (! root.success()) {
+            server.send(400, "text/plain", "error parsing body");
+            return;
+        }
+        if (! root.containsKey("state")) {
+            server.send(400, "text/plain", "missing data 'state'");
+        }
+        state = strcmp("on", root["state"]) == 0;
+        //digitalWrite(LED_PIN, state);
+        switchOn(state);
+        server.send(200);
+    });
+    server.begin();
+}
+
+void loop() {
+    server.handleClient();
+}
+
+/*
+void xloop()
 {
   // Check if a client has connected
   WiFiClient client = server.available();
@@ -114,6 +201,7 @@ void loop()
   // The client will actually be disconnected
   // when the function returns and 'client' object is detroyed
 }
+*/
 
 void setupWifiAccessPoint()
 {
@@ -148,7 +236,8 @@ void initHardware()
   Serial.begin(115200);
   pinMode(DIGITAL_PIN, INPUT_PULLUP);
   pinMode(LED_PIN, OUTPUT_OPEN_DRAIN); // OUTPUT, OUTPUT_OPEN_DRAIN
-  digitalWrite(LED_PIN, HIGH);
+  //digitalWrite(LED_PIN, LOW);
+  //state = HIGH;
   // Don't need to set ANALOG_PIN as input,
   // that's all it can be.
 }
