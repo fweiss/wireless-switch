@@ -1,22 +1,39 @@
 # Wireless Switch
 
-A simple DIY wireless switch
+A simple DIY wireless switch using ESP8266
 
 ## Usage
 
-Current usage is a bit funky. Eventually, it should be streamlined.
+The ESP8266 can be accessed wia WiFi in two modes:
 
-- From your wireless device, connect to "ESP8266 Thing XXXX"
-- The password is "sparkfun"
-- Open a browser on http://192.168.41.1
+- Access Point (AP)
+- Station (STA)
 
-The LED On and LED Off buttons are reversed.
+These modes can also be combined, but we'll skip this for the time being.
 
-The Read Analog does nothing.
+Currently, we're using station mode. Although it requires embedding the SSID and password in the code,
+it makes debugging easier, because it connects on power up. In AP mode, we have to manually join the network
+from a device.
+
+Once the ESP8266 has successfully connected to our WiFi router, the router should remember the MAC address
+and use the same DHCP IP address when the ESP8266 reconnects.
+
+### UI
+
+The UI displays a large switch. Clicking the switch toggles between OFF and ON.
+
+- clicking or tapping switch UI changes the state
+- page reload queries wireless switch for current state
+- changing state does not reload page
 
 ## Hardware
 
-TODO
+We are currently using the OLIMEX ESP8266 WiFi Dev component. It's mounted on a small breadboard. The breadboard provides:
+
+- terminals for 3.3 VDC supply
+- terminals to control 10 mA solid state relay LED
+- terminal for 3.3 V FTDI programming
+- switch to control programming mode
 
 ## Deployment
 
@@ -46,17 +63,40 @@ code.
 
 ## Development
 
-Use the Arduino IDE
+Use the Arduino IDE. Optionally, use a C++ IDE like Eclipse or IntelliJ.
 
-Recommend using IDE: Prefernces > use External Editor
+### Arduino IDE
 
-## Arduino IDE
+Library Manager: Add ArduinoJson
 
-Library Manager
+### Using other IDEs
 
-Add ArduinoJson
+The Arduino IDE is quite adequate, but when your project grows, you may want additional developer capabilities such as:
+
+- HTML editor
+- SCM integration
+- tree view source code navigation
+
+When you use an external IDE and the Arduino IDE, it's recommend to set the Arduino IDE into "external Editor" mode.
+In this mode, the Arduino IDE, will not allow editing and automaticall scan the file system for changes.
+
+Preferences > use External Editor
+
+### Arduino IDE command line
+
+It is possible to run the Arduino toolchain from the command line, bypassing the Arduino IDE UI editor. More info
+on this may be provided in the future.
 
 ## Links and references
 
 https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WebServer/examples/FSBrowser/FSBrowser.ino
+
+## Notes
+
+### Connecting to AP
+
+- From your wireless device, connect to "ESP8266 Thing XXXX"
+- The password is "sparkfun"
+- Open a browser on http://192.168.41.1
+
 
