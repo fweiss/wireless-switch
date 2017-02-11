@@ -12,8 +12,6 @@
 #include <ESP8266mDNS.h>
 #include <FS.h>
 
-#include "web-template.h"
-
 const char WiFiAPPSK[] = "sparkfun";
 
 const int LED_PIN = 4; // Thing's onboard, green LED

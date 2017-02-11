@@ -20,14 +20,20 @@ TODO
 
 ## Deployment
 
-Generic ESP8266 board
+### Generic ESP8266 board
 
-Follow steps to deploy to Olimex ESP8266-dev. In Ardnuio IDE:
+Follow these steps to deploy to Olimex ESP8266-dev.
+
+First put the ESP8266 in programming mode. This is usually via some buttons on the ESP8266 integration board.
+
+In Ardnuio IDE:
 
 - tools sketch esp8266 sketch data upload
 - sketch upload
 
-Remember that the FTDI supplies barely enough current
+IMPORTANT! the data upload has to be done before the sketch upload
+
+Remember that the FTDI supplies barely enough current to run WiFi.
 
 ## Testing
 
