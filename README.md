@@ -2,6 +2,9 @@
 
 A simple DIY wireless switch using ESP8266
 
+Since starting this project late 2016, we've seen the very capable ITEAD Sonoff line of DIY remote WiFi modules.
+The Sonoff Basic module is available for a mind-blowing $5! See links below.
+
 ## Usage
 
 The ESP8266 can be accessed wia WiFi in two modes:
@@ -78,7 +81,7 @@ The Arduino IDE is quite adequate, but when your project grows, you may want add
 - tree view source code navigation
 
 When you use an external IDE and the Arduino IDE, it's recommend to set the Arduino IDE into "external Editor" mode.
-In this mode, the Arduino IDE, will not allow editing and automaticall scan the file system for changes.
+In this mode, the Arduino IDE UI will disbale editing and automatically scan the file system for changes.
 
 Preferences > use External Editor
 
@@ -90,6 +93,8 @@ on this may be provided in the future.
 ## Links and references
 
 https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WebServer/examples/FSBrowser/FSBrowser.ino
+
+[ITEAD SONOFF Home Automation](https://www.itead.cc/smart-home.html)
 
 ## Notes
 
