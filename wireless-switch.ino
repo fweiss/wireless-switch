@@ -38,7 +38,6 @@ String getContentType(String filename) {
 }
 
 bool handleFileRead(String path){
-    if(path.endsWith("/")) path += "index.htm";
     String contentType = getContentType(path);
     String pathWithGz = path + ".gz";
     if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){
