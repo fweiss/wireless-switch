@@ -15,6 +15,7 @@
 const char WiFiAPPSK[] = "sparkfun";
 
 const int LED_PIN = 4; // Thing's onboard, green LED
+const int STATUS_PIN = 5;
 
 boolean state = false;
 
@@ -103,6 +104,8 @@ void setup() {
 
 void loop() {
     server.handleClient();
+    boolean cc = WiFi.status() == WL_CONNECTED;
+    digitalWrite(STATUS_PIN, cc ? HIGH : LOW);
 }
 
 void setupWifiAccessPoint()
@@ -134,4 +137,5 @@ void setupWifiStation() {
 
 void initHardware() {
   pinMode(LED_PIN, OUTPUT_OPEN_DRAIN); // OUTPUT, OUTPUT_OPEN_DRAIN
+  pinMode(STATUS_PIN, OUTPUT);
 }

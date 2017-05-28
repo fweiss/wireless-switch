@@ -40,16 +40,29 @@ We are currently using the OLIMEX ESP8266 WiFi Dev component. It's mounted on a 
 
 ## Deployment
 
-### Generic ESP8266 board
+Deploy the code via the Arduino IDE toolchain. Deployment was done with version 1.6.8.
 
-Follow these steps to deploy to Olimex ESP8266-dev.
+### Olimex MOD-WIFI-ESP8266-DEV board
+
+Follow these steps to deploy to MOD-WIFI-ESP8266-DEV board.
+
+#### Setup for deployment
+
+1. In the Arduino IDE, choose Tools > Board, and select 'Olimex MOD-WIFI-ESP8266(-DEV)'.
+1. Choose Tools > Port and select the appropriate port for your system setup.
+
+#### Upload data and code
+
+Unlike most Arduino projects, deployment takes two step.
+This is because the project uses the ESP8266 file system called SPIFFS.
+In the Arduino, uploading data is separate from code.
 
 First put the ESP8266 in programming mode. This is usually via some buttons on the ESP8266 integration board.
 
 In Ardnuio IDE:
 
-- tools sketch esp8266 sketch data upload
-- sketch upload
+1. Choose Tools > ESP8266 Sketch Data Upload.
+1. Choose Sketch > Upload, or click the Upload toolbar button.
 
 IMPORTANT! the data upload has to be done before the sketch upload
 
