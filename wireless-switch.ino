@@ -47,9 +47,8 @@ bool handleFileRead(String path){
         File file = SPIFFS.open(path, "r");
         size_t sent = server.streamFile(file, contentType);
         file.close();
-        return true;
     }
-    return false;
+    server.send(404, "text/plain", "FileNotFound");
 }
 
 // open drain, LOW is on
@@ -66,19 +65,13 @@ void setup() {
     setupWifiStation();
 
     server.on("/", HTTP_GET, []() {
-      if (!handleFileRead("/index.html")) {
-        server.send(404, "text/plain", "FileNotFound");
-      }
+      handleFileRead("/index.html");
     });
     server.on("/main.css", HTTP_GET, []() {
-      if (!handleFileRead("/main.css")) {
-       server.send(404, "text/plain", "FileNotFound");
-      }
+      handleFileRead("/main.css");
     });
     server.on("/main.js", HTTP_GET, []() {
-      if (!handleFileRead("/main.js")) {
-       server.send(404, "text/plain", "FileNotFound");
-      }
+      handleFileRead("/main.js");
     });
     server.on("/api/switch", HTTP_GET, []() {
         String value = state ? "on" : "off";
