@@ -39,9 +39,12 @@ We are currently using the OLIMEX ESP8266 WiFi Dev component. It's mounted on a 
 - switch to control programming mode
 
 ### Solid state relay
-Used the [IXYS CPC1998J](https://www.digikey.com/product-detail/en/ixys-integrated-circuits-division/CPC1998J/CLA368-ND/2561233).
+Used a [IXYS CPC1998J](https://www.digikey.com/product-detail/en/ixys-integrated-circuits-division/CPC1998J/CLA368-ND/2561233).
 
 It's rated 5-20 A @ 20-240 VAC. It's optically isolated, so can be safely controlled by an MCU. The input requires 5 mA or less to activate. There's no extra circuitry, such as a buffer transistor required, as would be for a relay with 100 mA or so coil current.
+
+### MCU power convertor
+Used a YS-12V450A down convertor. Input 120 VAC, output 5 VDC.
 
 ## Deployment
 
