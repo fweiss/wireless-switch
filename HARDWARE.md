@@ -13,6 +13,6 @@
  ## Assembly
  Here are some picture of the assembled unit.
  
- ![The internal components](/doc/housing.JPG)
+ ![The internal components](/doc/housing.jpg)
  
  ![Complete assembly with cover off](/doc/cover-off.jpg)
