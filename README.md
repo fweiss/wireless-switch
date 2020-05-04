@@ -25,6 +25,8 @@ and use the same DHCP IP address when the ESP8266 reconnects.
 
 The UI displays a large switch. Clicking the switch toggles between OFF and ON.
 
+![UI Screenshot](/docs/screen-shot.png)
+
 - clicking or tapping switch UI changes the state
 - page reload queries wireless switch for current state
 - changing state does not reload page
