@@ -23,7 +23,7 @@ Olimex ESP8266
  - [Aliexpress](https://www.aliexpress.com/item/33021479220.html)
  
  ## Solid state relay
- A relay would require a buffer circuit. SSR are availalable that bot isolate the MCU from the line and can be activated with just a few mA.
+ A relay would require a buffer circuit. SSRs are availalable that both isolate the MCU from the line and can be activated with just a few mA.
  
  IXYS CPC1998J
  - 20-240 VAC
