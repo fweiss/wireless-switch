@@ -1,4 +1,16 @@
 # Hardware
+A summary of the hardware components used for the wireless switch
+
+- MCU
+- MCU power supply
+- solid state relay
+- outlet
+- line cord
+- enclosure
+- miscellaneous
+
+## MCU
+Olimex ESP8266
  
  ## MCU power
  - Provide 3.3 VDC from 120-240 VAC mains
@@ -8,7 +20,17 @@
  - isolation
  
  YS-12V450A
- - [Aliexpress](https://www.aliexpress.com/item/33021479220.html) 
+ - [Aliexpress](https://www.aliexpress.com/item/33021479220.html)
+ 
+ ## Solid state relay
+ A relay would require a buffer circuit. SSR are availalable that bot isolate the MCU from the line and can be activated with just a few mA.
+ 
+ IXYS CPC1998J
+ - 20-240 VAC
+ - 5 A without heatsink
+ - 5 mA control current
+ - isolation 2500 VAC
+ - a bit expensive - $8
  
  ## Assembly
  Here are some picture of the assembled unit.
