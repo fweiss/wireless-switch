@@ -23,9 +23,13 @@ Olimex ESP8266
  - [Aliexpress](https://www.aliexpress.com/item/33021479220.html)
  
  ## Solid state relay
- A relay would require a buffer circuit because they require about 100 mA to activate while the MCU can only drive up to about 30 mA. SSRs are availalable that both isolate the MCU from the 120/220 VAC line and can be activated with less than 10 mA.
+ A solid state relay (SSR) has some advantages over a contact and coil relay.
+ There's no extra circuitry required, such as a buffer transistor, as would be for a relay with 100 mA or so coil current.
+ The ESP8266 MCU can only drive up to about 30 mA. 
+ Optically isolated SSRs protect the MCU from the 120/220 VAC line and can be activated with less than 10 mA.
  
- IXYS CPC1998J
+ [IXYS CPC1998J](https://www.digikey.com/product-detail/en/ixys-integrated-circuits-division/CPC1998J/CLA368-ND/2561233).
+ 
  - 20-240 VAC
  - 5 A without heatsink
  - 5 mA control current
