@@ -45,3 +45,6 @@ Olimex ESP8266
  ![The internal components](/doc/housing.jpg)
  
  ![Complete assembly with cover off](/doc/cover-off.jpg)
+ 
+ ## Links and references
+ I was wondering how the YS-12V450A power module supplied 3.3 V. Someone has [reverse engineered a similar module](https://easyeda.com/sascha23095123423/thx208-stripped-version) and shows how the TL431 does it.
