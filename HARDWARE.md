@@ -20,6 +20,9 @@ Olimex ESP8266
  - isolation
  
  YS-12V450A
+ 
+ > The vendor provides variants with 3.3, 5, and 12 VDC output.
+ 
  - [Aliexpress](https://www.aliexpress.com/item/33021479220.html)
  
  ## Solid state relay
