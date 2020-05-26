@@ -40,6 +40,8 @@ We are currently using the OLIMEX ESP8266 WiFi Dev component. It's mounted on a 
 - terminal for 3.3 V FTDI programming
 - switch to control programming mode
 
+There's [more detialed information on the hardware.](HARDWARE.md)
+
 ## Deployment
 
 Deploy the code via the Arduino IDE toolchain. Deployment was done with version 1.6.8.
