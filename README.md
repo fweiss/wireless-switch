@@ -87,7 +87,13 @@ Use the Arduino IDE. Optionally, use a C++ IDE like Eclipse or IntelliJ.
 
 ### Arduino IDE
 
-Library Manager: Add ArduinoJson
+Library dependencires:
+- ArduinoJson 5.13.5
+
+Board dependencies
+- esp8266 2.7.1 not 2.1.2
+
+> try 2.5.1, 2.7.1 has weird python3 issue
 
 ### Using other IDEs
 
